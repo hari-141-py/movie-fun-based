@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Movie list</h1>
+<div class="row">
+    {% for i in movie %}
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+            {% if i.image %}
+                 <img src="{{i.image.url}}" class="card-img-top" alt="{{i.name}}">
+            {% else %}
+                <p>No image available</p>
+            {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{i.name}}</h5>
+            <p class="card-text">{{i.language}}</p>
+            <a href="{% url 'home:movie_details' i.id %} " class="btn btn-primary">Details</a>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
